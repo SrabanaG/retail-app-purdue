@@ -1,22 +1,22 @@
-apiversion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: retail-app-deployment
- labels:
-  app: retail-app
+ namespace: default
+ 
+
 spec: 
- replicas: 1
- selector: 
-  matchLabels:
-    app: retail-app
- template:
-   metadata:
-     labels:
-       app: retail-app
-   spec:
-     containers:
-     - name: retail-app
-       image: retail-app:latest
-       imagePullPolicy: Never
-       ports:
-       - containerPort: 8080
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: retail-app
+  template:
+    metadata:
+      labels:
+        app: retail-app
+    spec:
+      containers:
+      - name: retail-app
+        image: retail-app:latest
+        ports:
+        - containerPort: 8080
