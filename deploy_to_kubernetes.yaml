@@ -19,5 +19,5 @@
 
     - name: Apply Kubernetes Service manifest
       kubernetes.core.k8s:
-       state: present
-       src: retail-app-service.yaml
+        state: present
+        src: retail-app-service.yaml
