@@ -1,0 +1,23 @@
+---
+- name: Deploy Retail App to Kubernetes
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Ensure Minikube is running (optional, but good for CI)
+      command: minikube start
+      ignore_errors: yes
+
+    - name: Load Docker image into Minikube (crucial for local images)
+      command: minikube image load retail-app:latest
+
+    - name: Apply Kubernetes Deployment manifest
+      kubernetes.core.k8s:
+        state: present
+        src: retail-app-deployment.yaml
+
+    -name: Apply Kubernetes Service manifest
+     kubernetes.core.k8s:
+       state: present
+       src: retail-app-service.yaml
