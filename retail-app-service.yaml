@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: retail-app-service
+  labels: 
+    app: retail-app
+spec: 
+  selector:
+    app: retail-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30000
