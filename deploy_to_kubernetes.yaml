@@ -17,7 +17,7 @@
         state: present
         src: retail-app-deployment.yaml
 
-    -name: Apply Kubernetes Service manifest
+    - name: Apply Kubernetes Service manifest
      kubernetes.core.k8s:
        state: present
        src: retail-app-service.yaml
