@@ -16,8 +16,10 @@
       kubernetes.core.k8s:
         state: present
         src: retail-app-deployment.yaml
+        validate_certs: false
 
     - name: Apply Kubernetes Service manifest
       kubernetes.core.k8s:
         state: present
         src: retail-app-service.yaml
+        validate_certs: false
