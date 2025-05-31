@@ -3,6 +3,8 @@
   hosts: localhost
   connection: local
   gather_facts: no
+  vars:
+    kubeconfig_path: "{{lookup('env', 'KUBECONFIG') | default('~/.kube/config', true)}}"
 
   tasks:
     - name: Ensure Minikube is running (optional, but good for CI)
@@ -14,12 +16,14 @@
 
     - name: Apply Kubernetes Deployment manifest
       kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
         state: present
         src: retail-app-deployment.yaml
         validate_certs: false
 
     - name: Apply Kubernetes Service manifest
       kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
         state: present
         src: retail-app-service.yaml
         validate_certs: false
